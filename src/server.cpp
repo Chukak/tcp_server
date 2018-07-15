@@ -33,7 +33,13 @@ server::server(const std::string& addr, const std::string& port) :
 
 void server::run() 
 {
-    io.run();
+    for (unsigned i = 0; i < boost::thread::hardware_concurrency(); i++) {
+        boost::thread *t = new boost::thread([this](){
+            io.run();
+        });
+        threads.add_thread(t);
+    }
+    threads.join_all();
 }
 
 void server::do_accept()
