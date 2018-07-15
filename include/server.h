@@ -6,6 +6,7 @@
 #include <boost/asio.hpp>
 #include "connection.h"
 #include "connection_manager.h"
+#include <boost/thread.hpp>
 
 using namespace pseudonyms;
 
@@ -43,6 +44,7 @@ private:
     acceptor acceptor_;
     connection_manager connection_manager_;
     boost::asio::signal_set signals;
+    boost::thread_group threads;
     
 };
 
