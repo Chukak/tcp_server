@@ -5,6 +5,7 @@
 #include "aliases.h"
 #include <boost/make_shared.hpp>
 #include <boost/enable_shared_from_this.hpp>
+#include <boost/thread/mutex.hpp>
 
 using namespace pseudonyms;
 
@@ -51,6 +52,7 @@ private:
     std::array<char, 8192> buffer_;
     connection_manager& connection_manager_;
     endpoint endpoint_;
+    boost::mutex m;
         
 };
 
